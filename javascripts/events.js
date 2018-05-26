@@ -1,6 +1,10 @@
+const towm = require('./towm');
+const apiKeys = require('./apiKeys');
+
 const validateZip = () => {
-  const zipInput = $('#searchBar').val();
+  const zipInput = $('#searchBar')[0].value;
   if (zipInput.length === 5 && $.isNumeric(zipInput)) {
+    towm.displayResults(zipInput);
   } else {
     alert('Oops! Please enter a five digit zip code');
   }
@@ -17,6 +21,7 @@ const searchEvents = () => {
 
 const initializer = () => {
   searchEvents();
+  apiKeys.retrieveKeys();
 };
 
 module.exports = {
