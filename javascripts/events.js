@@ -3,16 +3,17 @@ const apiKeys = require('./apiKeys');
 
 const validateZip = () => {
   const zipInput = $('#searchBar')[0].value;
+  // console.log('from events', zipInput);
   if (zipInput.length === 5 && $.isNumeric(zipInput)) {
     towm.setCurrentWeather(zipInput);
-    forecastButton();
+    forecastButton(zipInput);
   } else {
     alert('Oops! Please enter a five digit zip code');
   }
 };
 
-const forecastButton = () => {
-  $('#extForecast').on('click', towm.setExtdForecast);
+const forecastButton = (zipInput) => {
+  $('#extForecast').on('click', towm.setExtdForecast(zipInput));
   $('#weatherContainer').addClass('hidden');
 };
 
