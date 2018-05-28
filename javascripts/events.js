@@ -13,8 +13,8 @@ const validateZip = () => {
 };
 
 const forecastButton = (zipInput) => {
-  $('#extForecast').on('click', towm.setExtdForecast(zipInput));
-  $('#weatherContainer').addClass('hidden');
+  $('.extForecast').on('click', towm.setExtdForecast(zipInput));
+  // $('#weatherContainer').addClass('hidden');
 };
 
 const searchEvents = () => {
@@ -28,6 +28,7 @@ const searchEvents = () => {
 
 const initializer = () => {
   searchEvents();
+  // forecastButton();
   apiKeys.retrieveKeys();
 };
 
