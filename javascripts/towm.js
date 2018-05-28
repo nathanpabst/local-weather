@@ -1,4 +1,5 @@
 const dom = require('./dom');
+// const events = require('./events');
 
 let towmKey = '';
 
@@ -10,6 +11,7 @@ const setCurrentWeather = (searchText) => {
   getCurrentWeather(searchText)
     .then((result) => {
       dom.printCurrentWeather(result);
+      // events.forecastButton(searchText);
     })
     .catch((err) => {
       console.error('search error', err);
@@ -43,7 +45,6 @@ const getExtdForecast = (txt) => {
   return new Promise((resolve, reject) => {
     $.ajax(`https://api.openweathermap.org/data/2.5/forecast?zip=${txt},us&appid=${towmKey}`)
       .done((result) => {
-        console.log(result);
         resolve(result);
       })
       .fail((err) => {
