@@ -1,13 +1,14 @@
-const events = require('./events');
+// const events = require('./events');
 
 const printExtendedForecast = (data) => {
-//   let forecastOutput = '';
-//   let conditions = [];
-//   forecast.forecast.forEach((condition) => {
-//     conditions.push(condition.weather.main);
-//   });
-//   conditions = conditions.join(', ');
-//   for (let i = ...)
+  console.log('dom', data);
+  // let forecastOutput = '';
+  // let conditions = [];
+  // forecast.forecast.forEach((condition) => {
+  //   conditions.push(condition.weather.main);
+  // });
+  // conditions = conditions.join(', ');
+  // // for (let i = ...)
   // forecastOutput += `<div class="row">
   //                     <div class="col-sm-6 col-md-4">
   //                       <div class="thumbnail">
@@ -44,7 +45,7 @@ const printCurrentWeather = (weather) => {
               </div>
             </div>`;
   printToDom(output);
-  events.forecastButton();
+  // events.forecastButton();
 };
 
 const printToDom = (stringz) => {

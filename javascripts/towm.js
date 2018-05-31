@@ -35,8 +35,8 @@ const getCurrentWeather = () => {
   });
 };
 
-const setExtdForecast = (searchText) => {
-  getExtdForecast(searchText)
+const setExtdForecast = () => {
+  getExtdForecast()
     .then((result) => {
       dom.printExtendedForecast(result);
     })
@@ -45,7 +45,7 @@ const setExtdForecast = (searchText) => {
     });
 };
 
-const getExtdForecast = (txt) => {
+const getExtdForecast = () => {
   return new Promise((resolve, reject) => {
     $.ajax(`https://api.openweathermap.org/data/2.5/forecast?zip=${zipInput},us&appid=${towmKey}`)
       .done((result) => {

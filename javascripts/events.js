@@ -11,7 +11,7 @@ const validateZip = () => {
 };
 
 const forecastButton = (zipInput) => {
-  $('.extForecast').on('click', towm.setExtdForecast(zipInput));
+  $(document).on('click', '.extForecast', towm.setExtdForecast);
 };
 
 const searchEvents = () => {
@@ -26,6 +26,7 @@ const searchEvents = () => {
 const initializer = () => {
   searchEvents();
   apiKeys.retrieveKeys();
+  forecastButton();
 };
 
 module.exports = {
