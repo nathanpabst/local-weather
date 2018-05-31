@@ -9,7 +9,6 @@ const setKey = (key) => {
 
 const setZip = (userInput) => {
   zipInput = userInput;
-  // console.log('from towm', zipInput);
   setCurrentWeather();
 };
 
@@ -47,7 +46,7 @@ const setExtdForecast = () => {
 
 const getExtdForecast = () => {
   return new Promise((resolve, reject) => {
-    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?zip=${zipInput},us&appid=${towmKey}`)
+    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?zip=${zipInput},us&appid=${towmKey}&units=imperial`)
       .done((result) => {
         resolve(result);
       })
