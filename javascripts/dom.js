@@ -2,28 +2,30 @@
 
 const printExtendedForecast = (data) => {
   console.log('dom', data);
-  // let forecastOutput = '';
+  let forecastOutput = '';
   // let conditions = [];
-  // forecast.forecast.forEach((condition) => {
+  // data.list.weather.main.forEach((condition) => {
   //   conditions.push(condition.weather.main);
   // });
   // conditions = conditions.join(', ');
-  // // for (let i = ...)
-  // forecastOutput += `<div class="row">
-  //                     <div class="col-sm-6 col-md-4">
-  //                       <div class="thumbnail">
-  //                         <img src="..." alt="...">
-  //                           <div class="caption">
-  //                             <h3>${data.list[i].clouds.dt_txt}</h3>
-  //                             <h4>Temperature: ${data.list[i].main.temp}</h4
-  //                             <h4>Conditions: ${conditions}</h4>
-  //                             <h4>Air Pressure: ${data.list[i].main.pressure}</h4>
-  //                             <h4>Wind Speed: ${data.list[i].wind.speed}</h4>
-  //                           </div>
-  //                       </div>
-  //                     </div>
-  //                   </div>`;
-  // printToDom(forecastOutput, extendedForecast);
+  for (let i = 4; i < data.list.length; i += 8) {
+    forecastOutput += `<div class="row">
+                      <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                          <img src="..." alt="...">
+                            <div class="caption">
+                              <h3>${data.city.name}</h3>
+                              <h4>Day: ${data.list[i].dt_txt}</h4>
+                              <h4>Temperature: ${data.list[i].main.temp}</h4>
+                              <h4>Conditions: ${data.list[i].weather.main}</h4>
+                              <h4>Air Pressure: ${data.list[i].main.pressure}</h4>
+                              <h4>Wind Speed: ${data.list[i].wind.speed}</h4>
+                            </div>
+                        </div>
+                      </div>
+                    </div>`;
+  }
+  printToDom(forecastOutput);
 };
 
 const printCurrentWeather = (weather) => {
@@ -45,7 +47,6 @@ const printCurrentWeather = (weather) => {
               </div>
             </div>`;
   printToDom(output);
-  // events.forecastButton();
 };
 
 const printToDom = (stringz) => {

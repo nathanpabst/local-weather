@@ -9,7 +9,7 @@ const setKey = (key) => {
 
 const setZip = (userInput) => {
   zipInput = userInput;
-  console.log('from towm', zipInput);
+  // console.log('from towm', zipInput);
   setCurrentWeather();
 };
 
