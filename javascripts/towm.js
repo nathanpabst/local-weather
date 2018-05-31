@@ -1,26 +1,31 @@
 const dom = require('./dom');
-// const events = require('./events');
 
 let towmKey = '';
+let zipInput = '';
 
 const setKey = (key) => {
   towmKey = key;
 };
 
-const setCurrentWeather = (searchText) => {
-  getCurrentWeather(searchText)
+const setZip = (userInput) => {
+  zipInput = userInput;
+  console.log('from towm', zipInput);
+  setCurrentWeather();
+};
+
+const setCurrentWeather = () => {
+  getCurrentWeather()
     .then((result) => {
       dom.printCurrentWeather(result);
-      // events.forecastButton(searchText);
     })
     .catch((err) => {
       console.error('search error', err);
     });
 };
 
-const getCurrentWeather = (txt) => {
+const getCurrentWeather = () => {
   return new Promise((resolve, reject) => {
-    $.ajax(`https://api.openweathermap.org/data/2.5/weather?zip=${txt},us&appid=${towmKey}&units=imperial`)
+    $.ajax(`https://api.openweathermap.org/data/2.5/weather?zip=${zipInput},us&appid=${towmKey}&units=imperial`)
       .done((result) => {
         resolve(result);
       })
@@ -33,7 +38,6 @@ const getCurrentWeather = (txt) => {
 const setExtdForecast = (searchText) => {
   getExtdForecast(searchText)
     .then((result) => {
-      console.log('from towm', result);
       dom.printExtendedForecast(result);
     })
     .catch((err) => {
@@ -43,7 +47,7 @@ const setExtdForecast = (searchText) => {
 
 const getExtdForecast = (txt) => {
   return new Promise((resolve, reject) => {
-    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?zip=${txt},us&appid=${towmKey}`)
+    $.ajax(`https://api.openweathermap.org/data/2.5/forecast?zip=${zipInput},us&appid=${towmKey}`)
       .done((result) => {
         resolve(result);
       })
@@ -59,4 +63,5 @@ module.exports = {
   setExtdForecast,
   getExtdForecast,
   setKey,
+  setZip,
 };
