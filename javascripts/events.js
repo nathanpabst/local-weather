@@ -2,11 +2,9 @@ const towm = require('./towm');
 const apiKeys = require('./apiKeys');
 
 const validateZip = () => {
-  const zipInput = $('#searchBar')[0].value;
-  // console.log('from events', zipInput);
-  if (zipInput.length === 5 && $.isNumeric(zipInput)) {
-    towm.setCurrentWeather(zipInput);
-    forecastButton(zipInput);
+  const userInput = $('#searchBar')[0].value;
+  if (userInput.length === 5 && $.isNumeric(userInput)) {
+    towm.setZip(userInput);
   } else {
     alert('Oops! Please enter a five digit zip code');
   }
@@ -14,7 +12,6 @@ const validateZip = () => {
 
 const forecastButton = (zipInput) => {
   $('.extForecast').on('click', towm.setExtdForecast(zipInput));
-  // $('#weatherContainer').addClass('hidden');
 };
 
 const searchEvents = () => {
@@ -28,10 +25,10 @@ const searchEvents = () => {
 
 const initializer = () => {
   searchEvents();
-  // forecastButton();
   apiKeys.retrieveKeys();
 };
 
 module.exports = {
   initializer,
+  forecastButton,
 };
