@@ -1,18 +1,18 @@
 {
-	"forecasts": {
-		"forecast0": {
+	"locations": {
+		"location0": {
 			"isScarry": false,
 			"uid": "12345"
 		},
-		"forecast1": {
+		"location1": {
 			"isScarry": false,
 			"uid": "12345"
 		},
-		"forecast2": {
+		"location2": {
 			"isScarry": false,
 			"uid": "12345"
 		},
-		"forecast3": {
+		"location3": {
 			"isScarry": false,
 			"uid": "12345"
 		}

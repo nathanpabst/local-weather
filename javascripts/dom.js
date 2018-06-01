@@ -42,6 +42,7 @@ const printCurrentWeather = (weather) => {
                 <h3>Air Pressure: ${weather.main.pressure}</h3>
                 <h3>Wind Speed: ${weather.wind.speed}</h3>
                 <button class="btn btn-primary btn-lg extForecast" role="button">View 5 day forecast</button>
+                <button class="btn btn-primary btn-lg saveLocation" role="button">Save location</button>
               </div>
             </div>`;
   printToDom(output);

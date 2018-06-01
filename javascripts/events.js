@@ -10,6 +10,13 @@ const validateZip = () => {
   }
 };
 
+const saveLocationButton = () => {
+  $(document).on('click', '.saveLocation', function (e) {
+    const whoDis = $(e.target).closest('.container');
+    console.log(whoDis);
+  });
+};
+
 const forecastButton = (zipInput) => {
   $(document).on('click', '.extForecast', towm.setExtdForecast);
 };
@@ -27,9 +34,11 @@ const initializer = () => {
   searchEvents();
   apiKeys.retrieveKeys();
   forecastButton();
+  saveLocationButton();
 };
 
 module.exports = {
   initializer,
   forecastButton,
+  saveLocationButton,
 };
