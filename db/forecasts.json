@@ -1,0 +1,20 @@
+{
+	"forecasts": {
+		"forecast0": {
+			"isScarry": false,
+			"uid": "12345"
+		},
+		"forecast1": {
+			"isScarry": false,
+			"uid": "12345"
+		},
+		"forecast2": {
+			"isScarry": false,
+			"uid": "12345"
+		},
+		"forecast3": {
+			"isScarry": false,
+			"uid": "12345"
+		}
+	}
+}

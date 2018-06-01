@@ -1,4 +1,5 @@
 const towm = require('./towm');
+const firebaseApi = require('./firebaseApi');
 
 const apiKeys = () => {
   return new Promise((resolve, reject) => {
@@ -16,6 +17,8 @@ const retrieveKeys = () => {
   apiKeys()
     .then((results) => {
       towm.setKey(results.towm.apiKey);
+      firebaseApi.setConfig(results.firebase);
+      firebase.initializeApp(results.firebase);
     })
     .catch((err) => {
       console.error('no keys', err);
