@@ -4,12 +4,12 @@ const setConfig = (fbConfig) => {
   firebaseConfig = fbConfig;
 };
 
-const saveForecast = (newForecast) => {
+const saveLocationInDb = (newLocation) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
-      url: `${firebaseConfig.databaseURL}/forecasts.json`,
-      data: JSON.stringify(newForecast),
+      url: `${firebaseConfig.databaseURL}/locations.json`,
+      data: JSON.stringify(newLocation),
     })
       .done((uniqueKey) => {
         resolve(uniqueKey);
@@ -22,5 +22,5 @@ const saveForecast = (newForecast) => {
 
 module.exports = {
   setConfig,
-  saveForecast,
+  saveLocationInDb,
 };
