@@ -1,5 +1,6 @@
 const towm = require('./towm');
 const apiKeys = require('./apiKeys');
+const firebaseApi = require('./firebaseApi');
 
 const validateZip = () => {
   const userInput = $('#searchBar')[0].value;
@@ -10,10 +11,24 @@ const validateZip = () => {
   }
 };
 
-const saveLocationButton = () => {
-  $(document).on('click', '.saveLocation', function (e) {
-    const whoDis = $(e.target).closest('.container');
-    console.log(whoDis);
+const saveLocationEvent = () => {
+  $(document).on('click', '.saveLocation', (e) => {
+    const locationToAddCard = $(e.target).closest('.location');
+    const locationToAdd = {
+      name: locationToAddCard.find('.locationName').text(),
+      temp: locationToAddCard.find('.locationTemp').text(),
+      conditions: locationToAddCard.find('.locationConditions').text(),
+      airPressure: locationToAddCard.find('.locationAirPressure').text(),
+      windSpeed: locationToAddCard.find('.locationWindSpeed').text(),
+      isScary: false,
+    };
+    firebaseApi.saveLocationInDb(locationToAdd)
+      .then(() => {
+        alert('location saved');
+      })
+      .catch((error) => {
+        console.error('error in saving location', error);
+      });
   });
 };
 
@@ -34,11 +49,11 @@ const initializer = () => {
   searchEvents();
   apiKeys.retrieveKeys();
   forecastButton();
-  saveLocationButton();
+  saveLocationEvent();
 };
 
 module.exports = {
   initializer,
   forecastButton,
-  saveLocationButton,
+  saveLocationEvent,
 };

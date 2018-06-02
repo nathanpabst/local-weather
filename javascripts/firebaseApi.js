@@ -4,7 +4,7 @@ const setConfig = (fbConfig) => {
   firebaseConfig = fbConfig;
 };
 
-const saveLocation = (newLocation) => {
+const saveLocationInDb = (newLocation) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
@@ -22,5 +22,5 @@ const saveLocation = (newLocation) => {
 
 module.exports = {
   setConfig,
-  saveLocation,
+  saveLocationInDb,
 };

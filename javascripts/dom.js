@@ -34,13 +34,13 @@ const printCurrentWeather = (weather) => {
   });
   conditions = conditions.join(', ');
   output += `<div class="jumbotron text-center">
-              <div class="container">
-                <h1>${weather.name}</h1>
+              <div class="container location">
+                <h1 class="locationName">${weather.name}</h1>
                 <p>Current Weather</p>
-                <h2>${Math.round(weather.main.temp)}&deg; F</h2>
-                <h3>${conditions}</h3>
-                <h3>Air Pressure: ${weather.main.pressure}</h3>
-                <h3>Wind Speed: ${weather.wind.speed}</h3>
+                <h2 class="locationTemp">${Math.round(weather.main.temp)}&deg; F</h2>
+                <h3 class="locationConditions">${conditions}</h3>
+                <h3 class="locationAirPressure">Air Pressure: ${weather.main.pressure}</h3>
+                <h3 class="locationWindSpeed">Wind Speed: ${weather.wind.speed}</h3>
                 <button class="btn btn-primary btn-lg extForecast" role="button">View 5 day forecast</button>
                 <button class="btn btn-primary btn-lg saveLocation" role="button">Save location</button>
               </div>
