@@ -1,6 +1,7 @@
 const towm = require('./towm');
 const apiKeys = require('./apiKeys');
 const firebaseApi = require('./firebaseApi');
+const dom = require('./dom');
 
 const validateZip = () => {
   const userInput = $('#searchBar')[0].value;
@@ -9,6 +10,18 @@ const validateZip = () => {
   } else {
     alert('Oops! Please enter a five digit zip code');
   }
+};
+
+const getSavedLocationsEvent = () => {
+  // $(document).on('click', '.saveLocation', (e) => {
+
+  firebaseApi.getSavedLocations()
+    .then((locationsArray) => {
+      dom.domString(locationsArray);
+    })
+    .catch((error) => {
+      console.error('error in finding saved locations', error);
+    });
 };
 
 const saveLocationEvent = () => {
@@ -50,10 +63,12 @@ const initializer = () => {
   apiKeys.retrieveKeys();
   forecastButton();
   saveLocationEvent();
+  getSavedLocationsEvent();
 };
 
 module.exports = {
   initializer,
   forecastButton,
   saveLocationEvent,
+  getSavedLocationsEvent,
 };

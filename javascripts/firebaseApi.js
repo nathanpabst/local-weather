@@ -4,6 +4,28 @@ const setConfig = (fbConfig) => {
   firebaseConfig = fbConfig;
 };
 
+const getSavedLocations = () => {
+  return new Promise((resolve, reject) => {
+    const savedLocationsArray = [];
+    $.ajax({
+      method: 'GET',
+      url: `${firebaseConfig.databaseURL}/locations.json`,
+    })
+      .done((allLocationsObj) => {
+        if (allLocationsObj !== null) {
+          Object.keys(allLocationsObj).forEach((fbKey) => {
+            allLocationsObj[fbKey].id = fbKey;
+            savedLocationsArray.push(allLocationsObj[fbKey]);
+          });
+        }
+        resolve(savedLocationsArray);
+      })
+      .fail((error) => {
+        reject(error);
+      });
+  });
+};
+
 const saveLocationInDb = (newLocation) => {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -23,4 +45,5 @@ const saveLocationInDb = (newLocation) => {
 module.exports = {
   setConfig,
   saveLocationInDb,
+  getSavedLocations,
 };

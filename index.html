@@ -11,9 +11,18 @@
 </head>
 
 <body>
-  <div>
-    <h1>Local Weather</h1>
-  </div>
+
+      <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <h1 class="navbar-brand">InstaWeather</h1>
+
+              <button type="button" id="seeSaved" class="btn btn-default navbar-btn navbar-right">View Saved Locations</button>
+            </div>
+          </div>
+        </nav>
+
+
   <div id="search">
     <h1 class="text-center">Search</h1>
     <div class="input-group col-sm-6 col-sm-offset-3">
@@ -27,6 +36,7 @@
 
   <div id="weatherContainer"></div>
 
+  <div id="savedLocations"></div>
 
   <div id="extendedForecast"></div>
 
