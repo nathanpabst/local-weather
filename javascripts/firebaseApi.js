@@ -4,6 +4,21 @@ const setConfig = (fbConfig) => {
   firebaseConfig = fbConfig;
 };
 
+const deleteFavoriteFromDb = (locationId) => {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'DELETE',
+      url: `${firebaseConfig.databaseURL}/locations/${locationId}.json`,
+    })
+      .done(() => {
+        resolve();
+      })
+      .fail((error) => {
+        reject(error);
+      });
+  });
+};
+
 const getFavorites = () => {
   return new Promise((resolve, reject) => {
     const savedLocationsArray = [];
@@ -46,4 +61,5 @@ module.exports = {
   setConfig,
   saveFavoritesToDb,
   getFavorites,
+  deleteFavoriteFromDb,
 };

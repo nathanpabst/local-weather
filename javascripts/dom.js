@@ -1,22 +1,21 @@
 const printFavorites = (locationsArray) => {
   let favoritesOutput = '';
   favoritesOutput += `<h1 class="text-center">My Favorites</h1>`;
-  // const weatherImage = data.list[i].weather[0].icon;
-  // const imageUrl = `http://openweathermap.org/img/w/${weatherImage}.png`;
-  for (let i = 0; i < locationsArray.length; i++) {
+  locationsArray.forEach((location, index) => {
     favoritesOutput += `<div class="row">
                           <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                              <h1 class="text-center">${locationsArray[i].name}</h1>
+                            <div class="thumbnail location" data-firebase-id="${location.id}">
+                            <a class="btn deleteLocation">X</a>
+                              <h1 class="text-center">${location.name}</h1>
                               <p class="text-center">Current Weather</p>
-                              <h2 class="text-center">${locationsArray[i].temp}</h2>
-                              <h3 class="text-center">${locationsArray[i].conditions}</h3>
-                              <h3 class="text-center">${locationsArray[i].airPressure}</h3>
-                              <h3 class="text-center">${locationsArray[i].windSpeed}</h3>
+                              <h2 class="text-center">${location.temp}</h2>
+                              <h3 class="text-center">${location.conditions}</h3>
+                              <h3 class="text-center">${location.airPressure}</h3>
+                              <h3 class="text-center">${location.windSpeed}</h3>
                             </div>
                           </div>
                         </div>`;
-  }
+  });
   printToDom(favoritesOutput);
 };
 
