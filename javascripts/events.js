@@ -12,9 +12,30 @@ const validateZip = () => {
   }
 };
 
+const scaryWeatherEvent = () => {
+  $(document).on('click', '.markAsScary', (e) => {
+    const locationToUpdateId = $(e.target).closest('.location').data('firebaseId');
+    const locationToUpdateCard = $(e.target).closest('.location');
+    const updatedLocation = {
+      airPressure: locationToUpdateCard.find('.locationAirPressure').text(),
+      conditions: locationToUpdateCard.find('.locationConditions').text(),
+      isScary: true,
+      name: locationToUpdateCard.find('.locationName').text(),
+      temp: locationToUpdateCard.find('.locationTemp').text(),
+      windSpeed: locationToUpdateCard.find('.locationWindSpeed').text(),
+    };
+    firebaseApi.saveScaryWeatherInDb(updatedLocation, locationToUpdateId)
+      .then(() => {
+        getFavoritesEvent();
+      })
+      .catch((error) => {
+        console.error('error in marking weather as scary', error);
+      });
+  });
+};
+
 const deleteFavoriteEvent = () => {
   $(document).on('click', '.deleteLocation', (e) => {
-    console.log(e.target);
     const locationToDeleteId = $(e.target).closest('.location').data('firebaseId');
     firebaseApi.deleteFavoriteFromDb(locationToDeleteId)
       .then(() => {
@@ -83,6 +104,7 @@ const initializer = () => {
   getFavoritesEvent();
   viewFavoritesButton();
   deleteFavoriteEvent();
+  scaryWeatherEvent();
 };
 
 module.exports = {
@@ -92,4 +114,5 @@ module.exports = {
   getFavoritesEvent,
   viewFavoritesButton,
   deleteFavoriteEvent,
+  scaryWeatherEvent,
 };
