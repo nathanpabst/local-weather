@@ -12,6 +12,21 @@ const validateZip = () => {
   }
 };
 
+const deleteFavoriteEvent = () => {
+  $(document).on('click', '.deleteLocation', (e) => {
+    console.log(e.target);
+    const locationToDeleteId = $(e.target).closest('.location').data('firebaseId');
+    firebaseApi.deleteFavoriteFromDb(locationToDeleteId)
+      .then(() => {
+        alert('successfully removed this location');
+        getFavoritesEvent();
+      })
+      .catch((error) => {
+        console.error('error deleting error', error);
+      });
+  });
+};
+
 const getFavoritesEvent = () => {
   firebaseApi.getFavorites()
     .then((locationsArray) => {
@@ -67,6 +82,7 @@ const initializer = () => {
   saveToFavoritesEvent();
   getFavoritesEvent();
   viewFavoritesButton();
+  deleteFavoriteEvent();
 };
 
 module.exports = {
@@ -75,4 +91,5 @@ module.exports = {
   saveToFavoritesEvent,
   getFavoritesEvent,
   viewFavoritesButton,
+  deleteFavoriteEvent,
 };
