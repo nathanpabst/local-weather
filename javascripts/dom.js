@@ -6,12 +6,16 @@ const printFavorites = (locationsArray) => {
                           <div class="col-sm-6 col-md-4">
                             <div class="thumbnail location" data-firebase-id="${location.id}">
                             <a class="btn deleteLocation">X</a>
-                              <h1 class="text-center">${location.name}</h1>
+                            if (location.isScary === true) {
+                              favoritesOutput += <div class="col-sm-6 col-md-4 red">
+                            } else {
+                              <h1 class="text-center locationName">${location.name}</h1>
                               <p class="text-center">Current Weather</p>
-                              <h2 class="text-center">${location.temp}</h2>
-                              <h3 class="text-center">${location.conditions}</h3>
-                              <h3 class="text-center">${location.airPressure}</h3>
-                              <h3 class="text-center">${location.windSpeed}</h3>
+                              <h2 class="text-center locationTemp">${location.temp}</h2>
+                              <h3 class="text-center locationConditions">${location.conditions}</h3>
+                              <h3 class="text-center locationAirPressure">${location.airPressure}</h3>
+                              <h3 class="text-center locationWindSpeed">${location.windSpeed}</h3>
+                              <button class="btn btn-danger btn-lg markAsScary" role="button">I'm Scared</button>
                             </div>
                           </div>
                         </div>`;

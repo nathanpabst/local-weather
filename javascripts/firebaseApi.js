@@ -4,6 +4,22 @@ const setConfig = (fbConfig) => {
   firebaseConfig = fbConfig;
 };
 
+const saveScaryWeatherInDb = (updateLocation, locationId) => {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'PUT',
+      url: `${firebaseConfig.databaseURL}/locations/${locationId}.json`,
+      data: JSON.stringify(updateLocation),
+    })
+      .done((modifiedLocation) => {
+        resolve(modifiedLocation);
+      })
+      .fail((error) => {
+        reject(error);
+      });
+  });
+};
+
 const deleteFavoriteFromDb = (locationId) => {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -62,4 +78,5 @@ module.exports = {
   saveFavoritesToDb,
   getFavorites,
   deleteFavoriteFromDb,
+  saveScaryWeatherInDb,
 };
