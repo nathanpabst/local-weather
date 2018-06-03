@@ -1,4 +1,24 @@
-// const events = require('./events');
+const printFavorites = (locationsArray) => {
+  let favoritesOutput = '';
+  favoritesOutput += `<h1 class="text-center">My Favorites</h1>`;
+  // const weatherImage = data.list[i].weather[0].icon;
+  // const imageUrl = `http://openweathermap.org/img/w/${weatherImage}.png`;
+  for (let i = 0; i < locationsArray.length; i++) {
+    favoritesOutput += `<div class="row">
+                          <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                              <h1 class="text-center">${locationsArray[i].name}</h1>
+                              <p class="text-center">Current Weather</p>
+                              <h2 class="text-center">${locationsArray[i].temp}</h2>
+                              <h3 class="text-center">${locationsArray[i].conditions}</h3>
+                              <h3 class="text-center">${locationsArray[i].airPressure}</h3>
+                              <h3 class="text-center">${locationsArray[i].windSpeed}</h3>
+                            </div>
+                          </div>
+                        </div>`;
+  }
+  printToDom(favoritesOutput);
+};
 
 const printExtendedForecast = (data) => {
   let forecastOutput = '';
@@ -42,7 +62,7 @@ const printCurrentWeather = (weather) => {
                 <h3 class="locationAirPressure">Air Pressure: ${weather.main.pressure}</h3>
                 <h3 class="locationWindSpeed">Wind Speed: ${weather.wind.speed}</h3>
                 <button class="btn btn-primary btn-lg extForecast" role="button">View 5 day forecast</button>
-                <button class="btn btn-primary btn-lg saveLocation" role="button">Save location</button>
+                <button class="btn btn-primary btn-lg saveLocation" role="button">Add to favorites</button>
               </div>
             </div>`;
   printToDom(output);
@@ -55,4 +75,5 @@ const printToDom = (stringz) => {
 module.exports = {
   printCurrentWeather,
   printExtendedForecast,
+  printFavorites,
 };

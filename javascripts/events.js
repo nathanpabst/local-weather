@@ -1,6 +1,7 @@
 const towm = require('./towm');
 const apiKeys = require('./apiKeys');
 const firebaseApi = require('./firebaseApi');
+const dom = require('./dom');
 
 const validateZip = () => {
   const userInput = $('#searchBar')[0].value;
@@ -11,7 +12,17 @@ const validateZip = () => {
   }
 };
 
-const saveLocationEvent = () => {
+const getFavoritesEvent = () => {
+  firebaseApi.getFavorites()
+    .then((locationsArray) => {
+      dom.printFavorites(locationsArray);
+    })
+    .catch((error) => {
+      console.error('error in finding saved locations', error);
+    });
+};
+
+const saveToFavoritesEvent = () => {
   $(document).on('click', '.saveLocation', (e) => {
     const locationToAddCard = $(e.target).closest('.location');
     const locationToAdd = {
@@ -22,7 +33,7 @@ const saveLocationEvent = () => {
       windSpeed: locationToAddCard.find('.locationWindSpeed').text(),
       isScary: false,
     };
-    firebaseApi.saveLocationInDb(locationToAdd)
+    firebaseApi.saveFavoritesToDb(locationToAdd)
       .then(() => {
         alert('location saved');
       })
@@ -30,6 +41,10 @@ const saveLocationEvent = () => {
         console.error('error in saving location', error);
       });
   });
+};
+
+const viewFavoritesButton = () => {
+  $(document).on('click', '#favoritesBtn', getFavoritesEvent);
 };
 
 const forecastButton = (zipInput) => {
@@ -49,11 +64,15 @@ const initializer = () => {
   searchEvents();
   apiKeys.retrieveKeys();
   forecastButton();
-  saveLocationEvent();
+  saveToFavoritesEvent();
+  getFavoritesEvent();
+  viewFavoritesButton();
 };
 
 module.exports = {
   initializer,
   forecastButton,
-  saveLocationEvent,
+  saveToFavoritesEvent,
+  getFavoritesEvent,
+  viewFavoritesButton,
 };
