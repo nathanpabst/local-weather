@@ -9,9 +9,10 @@ const printFavorites = (locationsArray) => {
                             <div class="thumbnail">
                               <h1 class="text-center">${locationsArray[i].name}</h1>
                               <p class="text-center">Current Weather</p>
-                              <h2>${Math.round(locationsArray[i].temp)}&deg; F</h2>
-
-
+                              <h2 class="text-center">${locationsArray[i].temp}</h2>
+                              <h3 class="text-center">${locationsArray[i].conditions}</h3>
+                              <h3 class="text-center">${locationsArray[i].airPressure}</h3>
+                              <h3 class="text-center">${locationsArray[i].windSpeed}</h3>
                             </div>
                           </div>
                         </div>`;

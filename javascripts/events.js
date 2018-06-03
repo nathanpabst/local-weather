@@ -15,7 +15,6 @@ const validateZip = () => {
 const getFavoritesEvent = () => {
   firebaseApi.getFavorites()
     .then((locationsArray) => {
-      console.log('from events', locationsArray);
       dom.printFavorites(locationsArray);
     })
     .catch((error) => {
