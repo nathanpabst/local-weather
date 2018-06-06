@@ -108,11 +108,13 @@ const authEvents = () => {
       });
   });
 
-  $('registerLink').click(() => {
+  $('registerBtn').click(() => {
     const email = $('#registerEmail').val();
     const pass = $('#registerPassword').val();
     firebase.auth().createUserWithEmailAndPassword(email, pass)
       .catch((error) => {
+        $('#registrationErrorMsg').text(error.message);
+        $('#registrationError').removeClass('hide');
         const errorMessage = error.message;
         console.error(errorMessage);
       });
@@ -122,14 +124,14 @@ const authEvents = () => {
     $('#loginForm').addClass('hide');
     $('#registrationForm').removeClass('hide');
   });
-  $('#SignInLink').click(() => {
+  $('#signInLink').click(() => {
     $('#loginForm').removeClass('hide');
     $('#registrationForm').addClass('hide');
   });
   $('#logOut').click(() => {
     firebase.auth().signOut().then(() => {
       // Sign-out successful.
-      $('#myMovies').addClass('hide');
+      // $('#myMovies').addClass('hide');
       $('#search').addClass('hide');
       $('#authScreen').removeClass('hide');
     }).catch((error) => {
@@ -143,11 +145,12 @@ const initializer = () => {
   searchEvents();
   apiKeys.retrieveKeys();
   forecastButton();
-  saveToFavoritesEvent();
-  getFavoritesEvent();
+  // saveToFavoritesEvent();
+  // getFavoritesEvent();
   viewFavoritesButton();
-  deleteFavoriteEvent();
+  // deleteFavoriteEvent();
   scaryWeatherEvent();
+  authEvents();
 };
 
 module.exports = {
@@ -158,4 +161,5 @@ module.exports = {
   viewFavoritesButton,
   deleteFavoriteEvent,
   scaryWeatherEvent,
+  searchEvents,
 };

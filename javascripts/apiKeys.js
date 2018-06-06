@@ -1,5 +1,6 @@
 const towm = require('./towm');
 const firebaseApi = require('./firebaseApi');
+const {checkLoginStatus,} = require('./auth');
 
 const apiKeys = () => {
   return new Promise((resolve, reject) => {
@@ -19,6 +20,7 @@ const retrieveKeys = () => {
       towm.setKey(results.towm.apiKey);
       firebaseApi.setConfig(results.firebase);
       firebase.initializeApp(results.firebase);
+      checkLoginStatus();
     })
     .catch((err) => {
       console.error('no keys', err);
