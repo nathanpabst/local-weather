@@ -96,15 +96,61 @@ const searchEvents = () => {
   });
 };
 
+const authEvents = () => {
+  $('#signInBtn').click((e) => {
+    e.preventDefault();
+    const email = $('#inputEmail').val();
+    const pass = $('#inputPassword').val();
+    firebase.auth().signInWithEmailAndPassword(email, pass)
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
+  });
+
+  $('registerBtn').click(() => {
+    const email = $('#registerEmail').val();
+    const pass = $('#registerPassword').val();
+    firebase.auth().createUserWithEmailAndPassword(email, pass)
+      .catch((error) => {
+        $('#registrationErrorMsg').text(error.message);
+        $('#registrationError').removeClass('hide');
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
+  });
+
+  $('#registerLink').click(() => {
+    $('#loginForm').addClass('hide');
+    $('#registrationForm').removeClass('hide');
+  });
+  $('#signInLink').click(() => {
+    $('#loginForm').removeClass('hide');
+    $('#registrationForm').addClass('hide');
+  });
+  $('#logOut').click(() => {
+    firebase.auth().signOut().then(() => {
+      // Sign-out successful.
+      // $('#myMovies').addClass('hide');
+      $('#search').addClass('hide');
+      $('#authScreen').removeClass('hide');
+    }).catch((error) => {
+      // An error happened.
+      console.error(error);
+    });
+  });
+};
+
 const initializer = () => {
   searchEvents();
   apiKeys.retrieveKeys();
   forecastButton();
-  saveToFavoritesEvent();
-  getFavoritesEvent();
+  // saveToFavoritesEvent();
+  // getFavoritesEvent();
   viewFavoritesButton();
-  deleteFavoriteEvent();
+  // deleteFavoriteEvent();
   scaryWeatherEvent();
+  authEvents();
 };
 
 module.exports = {
@@ -115,4 +161,5 @@ module.exports = {
   viewFavoritesButton,
   deleteFavoriteEvent,
   scaryWeatherEvent,
+  searchEvents,
 };

@@ -1,4 +1,9 @@
 let firebaseConfig = {};
+let uid = '';
+
+const setUID = (newUID) => {
+  uid = newUID;
+};
 
 const setConfig = (fbConfig) => {
   firebaseConfig = fbConfig;
@@ -40,7 +45,7 @@ const getFavorites = () => {
     const savedLocationsArray = [];
     $.ajax({
       method: 'GET',
-      url: `${firebaseConfig.databaseURL}/locations.json`,
+      url: `${firebaseConfig.databaseURL}/locations.json?orderBy="uid"&equalTo="${uid}"`,
     })
       .done((allLocationsObj) => {
         if (allLocationsObj !== null) {
@@ -75,6 +80,7 @@ const saveFavoritesToDb = (newLocation) => {
 
 module.exports = {
   setConfig,
+  setUID,
   saveFavoritesToDb,
   getFavorites,
   deleteFavoriteFromDb,
