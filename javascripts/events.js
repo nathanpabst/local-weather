@@ -90,7 +90,7 @@ const forecastButton = (zipInput) => {
 const searchEvents = () => {
   $('#searchButton').on('click', validateZip);
   $(document).keypress((e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !$('#search').hasClass('hide')) {
       validateZip();
     }
   });
@@ -131,7 +131,6 @@ const authEvents = () => {
   $('#logOut').click(() => {
     firebase.auth().signOut().then(() => {
       // Sign-out successful.
-      // $('#myMovies').addClass('hide');
       $('#search').addClass('hide');
       $('#authScreen').removeClass('hide');
     }).catch((error) => {
@@ -145,10 +144,10 @@ const initializer = () => {
   searchEvents();
   apiKeys.retrieveKeys();
   forecastButton();
-  // saveToFavoritesEvent();
-  // getFavoritesEvent();
+  saveToFavoritesEvent();
+  getFavoritesEvent();
   viewFavoritesButton();
-  // deleteFavoriteEvent();
+  deleteFavoriteEvent();
   scaryWeatherEvent();
   authEvents();
 };

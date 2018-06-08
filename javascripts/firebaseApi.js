@@ -63,6 +63,7 @@ const getFavorites = () => {
 };
 
 const saveFavoritesToDb = (newLocation) => {
+  newLocation.uid = uid;
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
