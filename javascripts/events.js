@@ -19,7 +19,7 @@ const scaryWeatherEvent = () => {
     const updatedLocation = {
       airPressure: locationToUpdateCard.find('.locationAirPressure').text(),
       conditions: locationToUpdateCard.find('.locationConditions').text(),
-      isScary: true,
+      isScary: !locationToUpdateCard.attr('class').includes('red'),
       name: locationToUpdateCard.find('.locationName').text(),
       temp: locationToUpdateCard.find('.locationTemp').text(),
       windSpeed: locationToUpdateCard.find('.locationWindSpeed').text(),

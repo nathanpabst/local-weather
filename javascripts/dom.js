@@ -4,7 +4,7 @@ const printFavorites = (locationsArray) => {
   locationsArray.forEach((location, index) => {
     favoritesOutput += `<div class="row">
                           <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail location" data-firebase-id="${location.id}">
+                            <div class="thumbnail location ${location.isScary ? 'red' : ''}" data-firebase-id="${location.id}">
                             <a class="btn deleteLocation">X</a>
                               <h1 class="text-center locationName">${location.name}</h1>
                               <p class="text-center">Current Weather</p>
