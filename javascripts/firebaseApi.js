@@ -10,6 +10,7 @@ const setConfig = (fbConfig) => {
 };
 
 const saveScaryWeatherInDb = (updateLocation, locationId) => {
+  updateLocation.uid = uid;
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'PUT',
