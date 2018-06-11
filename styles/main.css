@@ -1,6 +1,18 @@
 body {
   background-color: blue;
 }
+h1 {
+  color: white;
+}
+.control-label {
+  color: white;
+}
+
+#registerLink {
+  font-size: 18px;
+  color: whitesmoke;
+}
+
 .red {
   background-color: red;
 }
