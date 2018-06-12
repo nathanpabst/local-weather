@@ -108,7 +108,8 @@ const authEvents = () => {
       });
   });
 
-  $('registerBtn').click(() => {
+  $('#registerBtn').click((e) => {
+    e.preventDefault();
     const email = $('#registerEmail').val();
     const pass = $('#registerPassword').val();
     firebase.auth().createUserWithEmailAndPassword(email, pass)
@@ -145,7 +146,7 @@ const initializer = () => {
   apiKeys.retrieveKeys();
   forecastButton();
   saveToFavoritesEvent();
-  getFavoritesEvent();
+  // getFavoritesEvent();
   viewFavoritesButton();
   deleteFavoriteEvent();
   scaryWeatherEvent();
@@ -156,7 +157,7 @@ module.exports = {
   initializer,
   forecastButton,
   saveToFavoritesEvent,
-  getFavoritesEvent,
+  // getFavoritesEvent,
   viewFavoritesButton,
   deleteFavoriteEvent,
   scaryWeatherEvent,
