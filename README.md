@@ -37,7 +37,8 @@ View of page when user clicks the view favorites button.
 
 View from the favorites section, when a user marks the weather as scary.
 ![View from the favorites section, when a user marks the weather as scary.](https://raw.githubusercontent.com/nathanpabst/local-weather/0d04a1831e127d0695bdb80b02b564bfc5f8b610/screenshots/Screen%20Shot%202018-06-11%20at%206.27.36%20PM.png)
-
+## Deployed site Address
+Hosting URL: https://local-weather-646f1.firebaseapp.com
 
 ## How to Run
 1. Clone down this repo and cd into project
@@ -46,6 +47,7 @@ View from the favorites section, when a user marks the weather as scary.
 1. In the lib directory run the command grunt.
 1. CD to the root of the directory and type hs to start the local http-server.
 1. The terminal will give you a URL, such as http://127.0.0.1:8081, enter that address into your web browser.
+
 
 ## Contributors
 [Nathan Pabst](https://github.com/nathanpabst)
